@@ -29,7 +29,7 @@ function getFromInfo(info) {
 }
 
 
-const makeName = (string) => string ? string.replace(/[\s, //]/g, '-') : '';
+const makeName = (string) => string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
 
 
 

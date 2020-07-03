@@ -1,12 +1,8 @@
 // @ts-nocheck
 const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp')
 const repl = require('repl');
 const youtubedl = require('youtube-dl');
 const {isPlaylist, isVideo, getFromInfo} = require('./utils')
-
-const ROOT = process.cwd();
 
 const rl = repl.start({
   input: process.stdin,
@@ -53,10 +49,11 @@ function playList(url) {
 
       if (!fs.existsSync(output)) {
         fs.mkdirSync(output);
-        fs.mkdirSync(`${output}/${folder}`);
-
       } 
-        video.pipe(fs.createWriteStream(`${output}/${folder}/${filename}`));
+
+      if (!fs.existsSync(`${output}/${folder}`)) fs.mkdirSync(`${output}/${folder}`);
+
+      video.pipe(fs.createWriteStream(`${output}/${folder}/${filename}`));
 
       
     })
