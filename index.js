@@ -32,25 +32,22 @@ function playList(url) {
     })
    
     let size = 0
-    let infoNo = 0;
     video.on('info', function(info) {
-      console.log('info====>', info.title);
+      console.log('info====>', );
       const {youtuber, output, folder, filename, title} = getFromInfo(info) //?
       console.log(`
       -----------------------
-      ${output}
-      ${filename}
-      ${title}
-      ${infoNo}
+      title: ${info.title}
+      output: ${output}
+      filename: ${filename}
+      title: ${title}
       -----------------------
       `
       );
+
       fs.writeFileSync(`./info${title}.json`, JSON.stringify(info));
 
-      if (!fs.existsSync(output)) {
-        fs.mkdirSync(output);
-      } 
-
+      if (!fs.existsSync(output)) fs.mkdirSync(output);
       if (!fs.existsSync(`${output}/${folder}`)) fs.mkdirSync(`${output}/${folder}`);
 
       video.pipe(fs.createWriteStream(`${output}/${folder}/${filename}`));
