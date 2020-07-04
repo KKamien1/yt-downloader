@@ -1,25 +1,60 @@
-// @ts-nocheck
+require('dotenv').config();
 const fs = require('fs');
 const repl = require('repl');
 const youtubedl = require('youtube-dl');
-const {isPlaylist, isVideo, getFromInfo} = require('./utils')
+const {isPlaylist, isVideo, getFromInfo, makeFolders} = require('./utils')
 
-const rl = repl.start({
-  input: process.stdin,
-  output: process.stdout
-});
+let url = process.argv[2];
+const {ROOT, INFO} = process.env;
+
+const rootDir = fs.readdirSync(ROOT)
+
+const subdirs = rootDir.map(youtuber => {
+  const playlists = fs.readdirSync(`${ROOT}/${youtuber}`);
+  const videos = playlists.map(playlist => {
+    const videosInPlaylist = fs.readdirSync(`${ROOT}/${youtuber}/${playlist}`);
+    
+    return {
+      playlist,
+      videos: videosInPlaylist
+    }
+  });
+  return {
+    youtuber,
+    videos
+  }
+})
+
+fs.writeFileSync('TOTAL.json', JSON.stringify(subdirs), (err) => {
+  console.log(err, 'total zgrany');
+})
+console.log(rootDir, subdirs);
+
+if(!url) {
+  const rl = repl.start({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  
+  rl.question('Enter a youtube url: ', (url) => {
+    runPlay(url);
+    rl.close();
+  });
+} 
+
+// clearunPlay(url);
 
 
-rl.question('Enter a youtube url: ', (url) => {
-  console.log(isPlaylist(url), url);
+function runPlay(url) {
   if (isPlaylist(url)) {
     playList(url);
     
   } else if (isVideo(url)) {
     playVideo(url);
   }
-  rl.close();
-});
+}
+
 
 
 function playList(url) {
@@ -33,24 +68,28 @@ function playList(url) {
    
     let size = 0
     video.on('info', function(info) {
-      console.log('info====>', );
-      const {youtuber, output, folder, filename, title} = getFromInfo(info) //?
+      const {youtuber, output, folder, filename} = getFromInfo(info) //?
       console.log(`
+
       -----------------------
+      youtuber: ${youtuber}
       title: ${info.title}
       output: ${output}
       filename: ${filename}
-      title: ${title}
       -----------------------
+      
       `
       );
 
-      fs.writeFileSync(`./info${title}.json`, JSON.stringify(info));
+      makeFolders(INFO , youtuber, folder);
+      
+      fs.writeFileSync(`./${INFO}/${youtuber}/${folder}/${filename}.json`, JSON.stringify(info));
+      
+      makeFolders(ROOT, youtuber, folder);
+      // if (!fs.existsSync(output)) fs.mkdirSync(output);
+      // if (!fs.existsSync(`${output}/${folder}`)) fs.mkdirSync(`${output}/${folder}`);
 
-      if (!fs.existsSync(output)) fs.mkdirSync(output);
-      if (!fs.existsSync(`${output}/${folder}`)) fs.mkdirSync(`${output}/${folder}`);
-
-      video.pipe(fs.createWriteStream(`${output}/${folder}/${filename}`));
+      video.pipe(fs.createWriteStream(`${output}/${folder}/${filename}.mp4`));
 
       
     })

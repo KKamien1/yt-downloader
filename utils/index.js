@@ -1,7 +1,18 @@
+require('dotenv').config();
+const fs = require('fs');
 const querystring = require('querystring');
 const path = require('path');
 
-const ROOT = process.cwd();
+const {ROOT, INFO} = process.env;
+
+const makeName = (string) => string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
+const makeDir = name => {if (!fs.existsSync(path.resolve(name))) fs.mkdirSync(path.resolve(name));}
+
+
+
+makeDir(ROOT);
+makeDir(INFO);
+
 
 let sample1 = 'https://www.youtube.com/playlist?list=PL2sVlus9pnljgevBoDHcthkvFUqk9SaN-';
 let sample2 = 'https://www.youtube.com/playlist?list=PL2sVlus9pnljgevBoDHcthkvFUqk9SaN-';
@@ -15,27 +26,37 @@ function isVideo(url) {
 }
 
 function getFromInfo(info) {
-    const {playlist_uploader_id, playlist_uploader, size, playlist, fulltitle}  = info;
-    const [youtuber, folder, title ] = [playlist_uploader_id, playlist, fulltitle].map(s => makeName(s));  
+    const {uploader, playlist_uploader, playlist_uploader_id, size, playlist, fulltitle}  = info;
+    const author = uploader || playlist_uploader || playlist_uploader_id
+    const [youtuber, folder, filename ] = [author, playlist, fulltitle].map(s => makeName(s));  
     const output = path.resolve(ROOT, youtuber);
 
     return {
-        filename: `${title}.mp4`,
+        filename,
         output,
-        title,
         folder,
-        youtuber
+        youtuber, 
+        ROOT
+    }
+}
+
+function makeFolders(...folders) {
+    console.log(folders);
+    let dir = path.resolve();
+    while (folders.length) {
+        dir = `${dir}/${folders.shift()}`
+        makeDir(dir)
     }
 }
 
 
-const makeName = (string) => string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
 
 
 
 module.exports = {
     isPlaylist,
     isVideo,
-    getFromInfo
+    getFromInfo,
+    makeFolders
 }
 

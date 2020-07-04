@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "mkdirp": "^1.0.4",
-    "query-string": "^6.13.1",
     "youtube-dl": "^3.0.2"
   }
 }
