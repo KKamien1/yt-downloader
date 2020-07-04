@@ -1,3 +1,4 @@
+export default  
 [
     {
         "youtuber": "The-Net-Ninja",
