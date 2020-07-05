@@ -14,16 +14,35 @@ makeDir(ROOT);
 makeDir(INFO);
 
 
-let sample1 = 'https://www.youtube.com/playlist?list=PL2sVlus9pnljgevBoDHcthkvFUqk9SaN-';
-let sample2 = 'https://www.youtube.com/playlist?list=PL2sVlus9pnljgevBoDHcthkvFUqk9SaN-';
-let sample = 'https://www.youtube.com/playlist?list=';
-
 function isPlaylist(url) {
     return Boolean(querystring.parse(url, '?').list);
 }
 function isVideo(url) {
     return Boolean(querystring.parse(url, '?').v);
 }
+
+function getCurrentState(ROOT) {
+    const rootDir = fs.readdirSync(ROOT)
+    const subdirs = rootDir.map(youtuber => {
+        const playlists = fs.readdirSync(`${ROOT}/${youtuber}`);
+        const videos = playlists.map(playlist => {
+          const videosInPlaylist = fs.readdirSync(`${ROOT}/${youtuber}/${playlist}`);
+          console.log(playlist);
+          return {
+            name: playlist,
+            videos: videosInPlaylist
+          }
+        });
+        return {
+          youtuber,
+          playlists: videos
+        }
+    })
+    fs.writeFileSync('TOTAL.js', `export default ${JSON.stringify(subdirs)}`);
+    fs.writeFileSync('TOTAL__.json', JSON.stringify(subdirs));
+}
+
+
 
 function getFromInfo(info) {
     const {uploader, playlist_uploader, playlist_uploader_id, size, playlist, fulltitle}  = info;
@@ -57,6 +76,7 @@ module.exports = {
     isPlaylist,
     isVideo,
     getFromInfo,
-    makeFolders
+    makeFolders,
+    getCurrentState
 }
 

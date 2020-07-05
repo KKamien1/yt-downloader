@@ -2,40 +2,20 @@ require('dotenv').config();
 const fs = require('fs');
 const repl = require('repl');
 const youtubedl = require('youtube-dl');
-const {isPlaylist, isVideo, getFromInfo, makeFolders} = require('./utils')
+const {isPlaylist, isVideo, getFromInfo, makeFolders, getCurrentState} = require('./utils')
 
 let url = process.argv[2];
 const {ROOT, INFO} = process.env;
 
-const rootDir = fs.readdirSync(ROOT)
 
-const subdirs = rootDir.map(youtuber => {
-  const playlists = fs.readdirSync(`${ROOT}/${youtuber}`);
-  const videos = playlists.map(playlist => {
-    const videosInPlaylist = fs.readdirSync(`${ROOT}/${youtuber}/${playlist}`);
-    
-    return {
-      playlist,
-      videos: videosInPlaylist
-    }
-  });
-  return {
-    youtuber,
-    videos
-  }
-})
+getCurrentState(ROOT);
 
-fs.writeFileSync('TOTAL.json', JSON.stringify(subdirs), (err) => {
-  console.log(err, 'total zgrany');
-})
-console.log(rootDir, subdirs);
 
 if(!url) {
   const rl = repl.start({
     input: process.stdin,
     output: process.stdout
-  });
-  
+  });  
   
   rl.question('Enter a youtube url: ', (url) => {
     runPlay(url);
@@ -44,7 +24,6 @@ if(!url) {
 } 
 
 // clearunPlay(url);
-
 
 function runPlay(url) {
   if (isPlaylist(url)) {
