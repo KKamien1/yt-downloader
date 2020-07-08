@@ -12,7 +12,7 @@ let total = getCurrentState(ROOT);
 
 console.log(total);
 
-attachVideoDetails(total, ['uploader', 'title']);
+attachVideoDetails(total, ['title', 'id', 'tags', 'thumbnail']);
 
 if (!url) {
   const rl = repl.start({

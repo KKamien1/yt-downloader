@@ -2,12 +2,13 @@ require('dotenv').config();
 const fs = require('fs');
 const querystring = require('querystring');
 const path = require('path');
+const youtubedl = require('youtube-dl');
 
 const { ROOT, INFO } = process.env;
 
 const makeName = (string) => string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
 const makeDir = name => { if (!fs.existsSync(path.resolve(name))) fs.mkdirSync(path.resolve(name)); }
-
+const jsonInfoUrl = (youtuber, playlistName, video) => `./${INFO}/${youtuber}/${playlistName}/${video.replace('.mp4', '')}.json`;
 
 
 makeDir(ROOT);
@@ -36,6 +37,9 @@ function getCurrentState(ROOT) {
         return all;
     }, {});
     fs.writeFileSync('TOTAL.json', JSON.stringify(state));
+
+    //const state = new Map(Object.entries(currentState));
+
     return state;
 
 }
@@ -77,22 +81,22 @@ function getInfo(json, keys) {
 
 }
 
-function attachVideoDetails(total, keys) {
-    console.log(total);
-    const newTotal = Object.keys(total).map(youtuber => total[youtuber].playlists.map(playlist => playlist.videos.map(video => {
-        let filename = video.replace('.mp4', '');
-        let json = `./Info/${youtuber}/${playlist.name}/${filename}.json`;
-        let details = getInfo(json, keys);
-        console.log(details);
-        return {
-            video,
-            ...details
-        }
-    })));
+function attachVideoDetails(state, keys) {
 
-    fs.writeFileSync('TOTAL.json', JSON.stringify(newTotal));
+    for (const youtuber in state) {
+        state[youtuber].playlists.forEach(playlist => {
+            playlist.videos = playlist.videos.map(video => {
+                const json = jsonInfoUrl(youtuber, playlist.name, video);
+                const details = getInfo(json, keys);
+                return {
+                    video,
+                    ...details
+                }
+            })
+        })
+    }
 
-
+    fs.writeFileSync('TOTAL.json', JSON.stringify(state));
 }
 
 
