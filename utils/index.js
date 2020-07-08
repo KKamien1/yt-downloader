@@ -97,6 +97,7 @@ function attachVideoDetails(state, keys) {
     }
 
     fs.writeFileSync('TOTAL.json', JSON.stringify(state));
+    return state;
 }
 
 

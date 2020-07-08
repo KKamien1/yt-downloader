@@ -8,11 +8,15 @@ let url = process.argv[2];
 const { ROOT, INFO } = process.env;
 
 
-let total = getCurrentState(ROOT);
+let STATE;
 
-console.log(total);
 
-attachVideoDetails(total, ['title', 'id', 'tags', 'thumbnail']);
+new Promise((resolve, reject) => {
+  resolve(getCurrentState(ROOT));
+}).then(total => {
+  return attachVideoDetails(total, ['title', 'id', 'thumbnail']);
+}).then(newtotal => {
+}).catch(err => console.log(err));
 
 if (!url) {
   const rl = repl.start({
