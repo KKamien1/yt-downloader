@@ -3,9 +3,10 @@ const fs = require('fs');
 const querystring = require('querystring');
 const path = require('path');
 const https = require('https');
-const youtubedl = require('youtube-dl');
 
-const {ROOT, INFO, THUMBS} = process.env;
+
+
+const { ROOT, INFO, THUMBS } = process.env;
 
 const makeName = (string) =>
   string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
@@ -38,7 +39,7 @@ function getCurrentState(ROOT) {
         videos: videosInPlaylist,
       };
     });
-    all[youtuber] = {playlists: videos};
+    all[youtuber] = { playlists: videos };
     return all;
   }, {});
   fs.writeFileSync('TOTAL.json', JSON.stringify(state));
@@ -124,6 +125,8 @@ function downloadFile(url, dest, cb) {
     });
   });
 }
+
+
 
 module.exports = {
   attachVideoDetails,
