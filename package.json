@@ -9,6 +9,9 @@
     "client": "webpack-dev-server --mode development",
     "build": "webpack Client/src/index.js -o Client/dist/bundle.js -p"
   },
+  "bin": {
+    "ytoff": "./bin/ytoff.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
