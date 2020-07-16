@@ -1,4 +1,11 @@
 require('dotenv').config();
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+emitter.on('updateState', (state) => {
+  console.log('State updated', Object.keys(state));
+})
 const {
 
   getCurrentState,
@@ -6,7 +13,8 @@ const {
 
 } = require('./utils');
 
-const { askUser } = require('./yt-dl.js')
+const { askUser } = require('./yt-dl.js');
+
 
 let url = process.argv[2];
 const { ROOT, INFO, THUMBS } = process.env;
@@ -19,11 +27,13 @@ new Promise((resolve, reject) => {
   .then((total) => {
     return attachVideoDetails(total, ['title', 'id', 'thumbnail']);
   })
-  .then((newtotal) => { })
+  .then((newtotal) => {
+    emitter.emit('updateState', newtotal)
+  })
   .catch((err) => console.log(err));
 
 
-if (!url) askUser();
+// if (!url) askUser();
 
 // clearunPlay(url);
 
