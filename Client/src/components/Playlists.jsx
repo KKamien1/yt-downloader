@@ -1,18 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react';
+import Videoslist from './Videoslist.jsx';
 
-const Playlists = ({ lists }) => {
+const Playlists = ({lists}) => {
+  const [activeList, setactiveList] = useState(null);
+  const handleOnClick = (name) => setactiveList(name);
 
-    console.log("Lists==>", typeof lists)
-
-    const content = lists.map(list => {
-        return (<li key={list.name}>{list.name}</li>)
-    })
-
+  const content = lists.map((list) => {
+    const isActive = list.name === activeList;
     return (
-        <ul>
-            {content}
-        </ul>
+      <li key={list.name} onClick={() => handleOnClick(list.name)}>
+        {list.name}
+        {isActive && <Videoslist videos={list.videos} />}
+      </li>
     );
-}
+  });
 
-export default Playlists; 
+  return <ul>{content}</ul>;
+};
+
+export default Playlists;
