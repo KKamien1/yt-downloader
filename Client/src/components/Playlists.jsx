@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import Videoslist from './Videoslist.jsx';
+import {AppContext} from '../App';
 
-const Playlists = ({lists}) => {
-  const [activeList, setactiveList] = useState(null);
-  const handleOnClick = (name) => setactiveList(name);
+const Playlists = () => {
+  const {state, dispatch} = useContext(AppContext);
+  const handleOnClick = (name) =>
+    dispatch({type: 'SET_PLAYLIST', playlist: name});
 
-  const content = lists.map((list) => {
-    const isActive = list.name === activeList;
+  const content = state.lists[state.youtuber].playlists.map((list) => {
+    const isActive = list.name === state.playlist;
+    console.log(state.getActivePath());
     return (
       <li key={list.name} onClick={() => handleOnClick(list.name)}>
         {list.name}
