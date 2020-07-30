@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react';
 import Playlists from './Playlists.jsx';
-import {AppContext} from '../App';
+import {PlayerContext} from '../player/PlayerContext';
 
 export default function YoutubersList() {
-  const {state, dispatch} = useContext(AppContext);
+  const [state, dispatch] = useContext(PlayerContext);
   const youtubersList = Object.keys(state.lists);
 
   const handleOnclick = (youtuber) =>
