@@ -9,7 +9,7 @@ const https = require('https');
 const { ROOT, INFO, THUMBS } = process.env;
 
 const makeName = (string) =>
-  string ? string.replace(/(\s+|\/|\*|\.|\[|\]|:|;|\||\?|,|"|')/g, '-') : '';
+  string ? string.replace(/(\s+|\/|\*|\.|\[|\]|#|:|;|\||\?|,|"|')/g, '-') : '';
 const makeDir = (name) => {
   if (!fs.existsSync(path.resolve(name))) fs.mkdirSync(path.resolve(name));
 };

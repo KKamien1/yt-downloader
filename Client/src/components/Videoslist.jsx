@@ -1,13 +1,8 @@
-import React, {useContext} from 'react';
-import {PlayerContext} from '../player/PlayerContext';
+import React from 'react';
 import usePlayer from '../player/usePlayer';
 
-export default function Videoslist({videos}) {
-  const {playVideo} = usePlayer();
-  //const [state, dispatch] = useContext(PlayerContext);
-  // const {youtuber, playlist} = state;
-
-  // const handleClick = (video) => playVideo(video);
+export default function Videoslist({ videos }) {
+  const { playVideo } = usePlayer();
 
   const content = videos.map((video) => {
     return (

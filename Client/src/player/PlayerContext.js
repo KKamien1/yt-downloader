@@ -1,4 +1,4 @@
-import {createContext, useReducer} from 'react';
+import { createContext, useReducer } from 'react';
 import total from '../../../TOTAL.json';
 
 const init = {
@@ -12,24 +12,25 @@ const init = {
 };
 
 const stateReducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case 'SET_ACTIVE':
-      return {...state, active: action.nowactive};
+      return { ...state, active: action.nowactive };
       break;
     case 'SET_PATH':
-      return {...state, path: [action.path, ...state.path]};
+      return { ...state, path: [action.path, ...state.path] };
       break;
     case 'SET_PLAYLIST':
-      return {...state, playlist: action.playlist};
+      return { ...state, playlist: action.playlist };
       break;
     case 'SET_YOUTUBER':
-      return {...state, youtuber: action.youtuber};
+      return { ...state, youtuber: action.youtuber };
       break;
     case 'PLAY':
-      return {...state, video: action.video};
+      return { ...state, video: action.video };
       break;
     case 'TOGGLE_PLAY':
-      return {...state, isPlaying: !action.isPlaying};
+      return { ...state, isPlaying: !action.isPlaying };
       break;
     default:
       return state;
@@ -37,7 +38,7 @@ const stateReducer = (state, action) => {
   }
 };
 
-const PlayerContext = createContext([{}, () => {}]);
+const PlayerContext = createContext([{}, () => { }]);
 
 const PlayerProvider = (props) => {
   const [state, dispatch] = useReducer(stateReducer, init);
@@ -48,4 +49,4 @@ const PlayerProvider = (props) => {
   );
 };
 
-export {PlayerProvider, PlayerContext};
+export { PlayerProvider, PlayerContext };
