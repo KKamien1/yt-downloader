@@ -105,7 +105,7 @@ function attachVideoDetails(state, keys) {
         const json = jsonInfoUrl(youtuber, playlist.name, video);
         const details = getInfo(json, keys);
         return {
-          video,
+          url: video,
           ...details,
         };
       });

@@ -1,18 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useEffect, forwardRef } from 'react';
 import usePlayer from '../player/usePlayer';
 import { PlayerContext } from '../player/PlayerContext';
 
 const VideoPlayer = (props) => {
     const [state, dispatch] = useContext(PlayerContext);
-    const { playVideo } = usePlayer();
-
-    const url = ({ youtuber, playlist, video: { video: url } }) => `YouTubeOff/${youtuber}/${playlist}/${url}`
-
+    const videoRef = useRef(null);
+    useEffect( () => {
+        dispatch({type: 'SET_VIDEO_REF', videoRef});
+    },[] )   
+    
     return (
-
-        <video width="500" height="600" controls src={url(state)}>
-            {/* <source ></source> */}
-        </video>
+        <div>
+            {state.video && 
+                <video ref={videoRef} autoPlay={state.isPlaying} controls src={state.video}></video>
+            }
+        </div>
     )
 }
 

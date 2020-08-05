@@ -1,1 +1,145 @@
-{}
+{
+    "Fun-Fun-Function": {
+        "playlists": [
+            {
+                "name": "Haskell",
+                "videos": [
+                    {
+                        "url": "Haskell---Baby-s-first-functions---FunFunFunction-#36.mp4",
+                        "title": "Haskell - Baby's first functions - FunFunFunction #36",
+                        "id": "v5AukLriIh8",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/v5AukLriIh8/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Haskell-Basics---FunFunFunction-#35.mp4",
+                        "title": "Haskell Basics - FunFunFunction #35",
+                        "id": "j5a9l1Td2Lo",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/j5a9l1Td2Lo/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Haskell-lists---FunFunFunction-#39.mp4",
+                        "title": "Haskell lists - FunFunFunction #39",
+                        "id": "FufhKV3dEis",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/FufhKV3dEis/maxresdefault.webp"
+                    }
+                ]
+            }
+        ]
+    },
+    "LetThemTalkTV": {
+        "playlists": [
+            {
+                "name": "Learning-English-on-the-streets-of-London",
+                "videos": [
+                    {
+                        "url": "The-Top-10-French-expressions-in-English---But-do-we-still-use-them-.mp4",
+                        "title": "The Top 10 French expressions in English - But do we still use them?",
+                        "id": "bBINHn9tblc",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/bBINHn9tblc/maxresdefault.webp"
+                    },
+                    {
+                        "url": "The-top-10-mispronounced-words-in-English-made-by-foreign-learners.mp4",
+                        "title": "The top 10 mispronounced words in English made by foreign learners",
+                        "id": "GZTJXtcOkvU",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/GZTJXtcOkvU/maxresdefault.webp"
+                    }
+                ]
+            },
+            {
+                "name": "phrasal-verbs",
+                "videos": [
+                    {
+                        "url": "101-Really-Useful-PHRASAL-VERBS--intermediate-and-advanced.mp4",
+                        "title": "101 Really Useful PHRASAL VERBS: intermediate and advanced",
+                        "id": "UCEYZnIszxM",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/UCEYZnIszxM/maxresdefault.webp"
+                    },
+                    {
+                        "url": "All-about-PHRASAL-VERBS-and-HOW-TO-LEARN-THEM.mp4",
+                        "title": "All about PHRASAL VERBS and HOW TO LEARN THEM",
+                        "id": "QDNiLKIGcPI",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/QDNiLKIGcPI/maxresdefault.webp"
+                    }
+                ]
+            }
+        ]
+    },
+    "Samuraj-Programowania": {
+        "playlists": [
+            {
+                "name": "Prosta-strona-internetowa-od-zera",
+                "videos": [
+                    {
+                        "url": "Bonus-do-serii--Pierwsza-strona-internetowa-od-zera--4-4.mp4",
+                        "title": "Bonus do serii \"Pierwsza strona internetowa od zera\" 4/4",
+                        "id": "HgPDAnj9Vxc",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/HgPDAnj9Vxc/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Strona-internetowa-od-zera--Cały-kod-HTML-1-4.mp4",
+                        "title": "Strona internetowa od zera. Cały kod HTML 1/4",
+                        "id": "TZMVsQkDs58",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/TZMVsQkDs58/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Strona-internetowa-od-zera--Kod-CSS-dla-headera-i-menu-2-4.mp4",
+                        "title": "Strona internetowa od zera. Kod CSS dla headera i menu 2/4",
+                        "id": "wLHhaMgAdPY",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/wLHhaMgAdPY/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Strona-internetowa-od-zera--Kod-css-dla-section-i-footer-3-4.mp4",
+                        "title": "Strona internetowa od zera. Kod css dla section i footer 3/4",
+                        "id": "Yqn_ZsfSfis",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/Yqn_ZsfSfis/maxresdefault.webp"
+                    }
+                ]
+            }
+        ]
+    },
+    "The-Net-Ninja": {
+        "playlists": [
+            {
+                "name": "Modern-JavaScript-Tutorial",
+                "videos": [
+                    {
+                        "url": "Modern-JavaScript-Tutorial--1---Intro-&-Setup.mp4",
+                        "title": "Modern JavaScript Tutorial #1 - Intro & Setup",
+                        "id": "iWOYAxlnaww",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/iWOYAxlnaww/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Modern-JavaScript-Tutorial--2---Syntax-Basics-&-Types.mp4",
+                        "title": "Modern JavaScript Tutorial #2 - Syntax Basics & Types",
+                        "id": "FhguwBJeqWs",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/FhguwBJeqWs/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Modern-JavaScript-Tutorial--3---Control-Flow.mp4",
+                        "title": "Modern JavaScript Tutorial #3 - Control Flow",
+                        "id": "JloLGV9DmtQ",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/JloLGV9DmtQ/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Modern-JavaScript-Tutorial--4---Functions.mp4",
+                        "title": "Modern JavaScript Tutorial #4 - Functions",
+                        "id": "xUI5Tsl2JpY",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/xUI5Tsl2JpY/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Modern-JavaScript-Tutorial--5---Objects.mp4",
+                        "title": "Modern JavaScript Tutorial #5 - Objects",
+                        "id": "X0ipw1k7ygU",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/X0ipw1k7ygU/maxresdefault.webp"
+                    },
+                    {
+                        "url": "Modern-JavaScript-Tutorial--6---The-Document-Object-Model.mp4",
+                        "title": "Modern JavaScript Tutorial #6 - The Document Object Model",
+                        "id": "wKBu_dEaF9E",
+                        "thumbnail": "https://i.ytimg.com/vi_webp/wKBu_dEaF9E/maxresdefault.webp"
+                    }
+                ]
+            }
+        ]
+    }
+}

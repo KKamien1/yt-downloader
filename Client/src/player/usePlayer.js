@@ -7,12 +7,23 @@ const usePlayer = () => {
   function togglePlay() {
     dispatch({ type: 'TOGGLE_PLAY', isPlaying: state.isPlaying });
   }
+  function getVideoUrl ({url}) {
+    const { youtuber, playlist} = state;
+    const path = `YouTubeOff/${youtuber}/${playlist}/`
+      return `${path}/${url}`;
+  }
+
+  function setVideo(video) {
+    const url = getVideoUrl(video);
+    dispatch({ type: 'SET_VIDEO', url});
+  }
 
   function playVideo(video) {
-    if (video === state.video) {
+    if (state.video.includes(video.url) ) {
       togglePlay();
     } else {
-      dispatch({ type: 'PLAY', video });
+      setVideo(video);
+      //dispatch({ type: 'PLAY', video });
       // const path = `/${state.youtuber}/${state.playlist}`;
       // window.location.pathname = `${path}/${video.video}`;
     }

@@ -9,6 +9,7 @@ const init = {
   path: [],
   video: '',
   isPlaying: false,
+  videoRef: null,
 };
 
 const stateReducer = (state, action) => {
@@ -28,6 +29,12 @@ const stateReducer = (state, action) => {
       break;
     case 'PLAY':
       return { ...state, video: action.video };
+      break;
+    case 'SET_VIDEO':
+      return { ...state, video: action.url };
+      break;
+    case 'SET_VIDEO_REF':
+      return { ...state, videoRef: action.videoRef };
       break;
     case 'TOGGLE_PLAY':
       return { ...state, isPlaying: !action.isPlaying };
